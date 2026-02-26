@@ -16,15 +16,19 @@ type ExpectedLike = {
 type LearningFile = {
   version: number;
   runs: number;
+  acceptedRuns: number;
+  rejectedRuns: number;
   lastUpdated: string;
   stats: {
     targetStoriesAvg: number;
     targetAcAvg: number;
     validationScoreAvg: number;
     qualityScoreAvg: number;
+    functionalityCoverageAvg: number;
   };
   roleCounts: Record<string, number>;
   notesSectionCounts: Record<string, number>;
+  findingTypeCounts: Record<string, number>;
 };
 
 const LEARNING_FILE = path.resolve("data", "quality_patterns.json");
@@ -43,13 +47,28 @@ export function getLearningGuidanceText() {
     .slice(0, 6)
     .map(([section]) => section);
 
+  const topFindings = Object.entries(data.findingTypeCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([finding, count]) => `${finding} (${count})`);
+
+  const acceptanceRate = data.runs > 0
+    ? ((data.acceptedRuns / data.runs) * 100).toFixed(1)
+    : "0.0";
+
   return [
     `- aprendizaje_runs: ${data.runs}`,
+    `- aprendizaje_runs_aceptados: ${data.acceptedRuns}`,
+    `- aprendizaje_runs_rechazados: ${data.rejectedRuns}`,
+    `- aprendizaje_ratio_aceptacion: ${acceptanceRate}%`,
     `- aprendizaje_target_historias_media: ${data.stats.targetStoriesAvg.toFixed(1)}`,
     `- aprendizaje_ac_media_por_hu: ${data.stats.targetAcAvg.toFixed(1)}`,
     `- aprendizaje_roles_frecuentes: ${topRoles.join(", ") || "n/a"}`,
     `- aprendizaje_secciones_notas_frecuentes: ${topSections.join(", ") || "n/a"}`,
-    "- aplica estos patrones como guía de calidad, sin inventar requisitos no presentes en el documento."
+    `- aprendizaje_errores_recurrentes: ${topFindings.join(", ") || "n/a"}`,
+    `- aprendizaje_cobertura_funcional_media: ${data.stats.functionalityCoverageAvg.toFixed(3)}`,
+    "- prioriza mitigar primero los errores recurrentes del historial.",
+    "- aplica estos patrones como guia de calidad, sin inventar requisitos no presentes en el documento."
   ].join("\n");
 }
 
@@ -57,7 +76,7 @@ export function suggestTargetStories(requirementsFunctionalitiesCount: number, e
   if (expectedCount > 0) return expectedCount;
 
   const learned = loadLearning();
-  const learnedTarget = learned.runs > 0
+  const learnedTarget = learned.acceptedRuns > 0
     ? Math.round(learned.stats.targetStoriesAvg)
     : 0;
 
@@ -71,6 +90,9 @@ export function updateLearningFromRun(params: {
   expectedStories?: ExpectedLike[];
   validationScore?: number;
   qualityScore?: number;
+  functionalityCoverage?: number;
+  validationFindings?: Array<{ type?: string }>;
+  forceAccept?: boolean;
   options?: {
     minQualityScore?: number;
     minValidationScore?: number;
@@ -88,22 +110,40 @@ export function updateLearningFromRun(params: {
   const minValidationScore = params.options?.minValidationScore ?? 75;
   const qualityScore = Number(params.qualityScore || 0);
   const validationScore = Number(params.validationScore || 0);
+  const functionalityCoverage = Number(params.functionalityCoverage || 0);
+  const validationFindings = Array.isArray(params.validationFindings)
+    ? params.validationFindings
+    : [];
+  const forceAccept = Boolean(params.forceAccept);
+  const isAccepted = forceAccept || (qualityScore >= minQualityScore && validationScore >= minValidationScore);
 
-  if (qualityScore < minQualityScore) {
-    return {
-      updated: false,
-      reason: "quality_below_threshold",
-      thresholds: { minQualityScore, minValidationScore },
-      values: { qualityScore, validationScore }
-    };
+  const learning = loadLearning();
+  learning.runs += 1;
+  learning.lastUpdated = new Date().toISOString();
+  if (isAccepted) learning.acceptedRuns += 1;
+  else learning.rejectedRuns += 1;
+
+  for (const f of validationFindings) {
+    const type = normalize(String(f?.type || ""));
+    if (!type) continue;
+    learning.findingTypeCounts[type] = (learning.findingTypeCounts[type] || 0) + 1;
   }
 
-  if (validationScore < minValidationScore) {
+  if (!isAccepted) {
+    saveLearning(learning);
     return {
       updated: false,
-      reason: "validation_below_threshold",
+      reason: qualityScore < minQualityScore
+        ? "quality_below_threshold"
+        : "validation_below_threshold",
+      forceAccept,
       thresholds: { minQualityScore, minValidationScore },
-      values: { qualityScore, validationScore }
+      values: { qualityScore, validationScore, functionalityCoverage },
+      counters: {
+        runs: learning.runs,
+        acceptedRuns: learning.acceptedRuns,
+        rejectedRuns: learning.rejectedRuns
+      }
     };
   }
 
@@ -113,20 +153,30 @@ export function updateLearningFromRun(params: {
     ? averageAc(expectedStories.map(s => s.acceptanceCriteria || []))
     : averageAc(generatedStories.map(s => s.acceptanceCriteria || []));
 
-  const learning = loadLearning();
-  learning.runs += 1;
-  learning.lastUpdated = new Date().toISOString();
-  learning.stats.targetStoriesAvg = runningAverage(learning.stats.targetStoriesAvg, learning.runs, targetStories);
-  learning.stats.targetAcAvg = runningAverage(learning.stats.targetAcAvg, learning.runs, targetAc);
+  learning.stats.targetStoriesAvg = runningAverage(
+    learning.stats.targetStoriesAvg,
+    learning.acceptedRuns,
+    targetStories
+  );
+  learning.stats.targetAcAvg = runningAverage(
+    learning.stats.targetAcAvg,
+    learning.acceptedRuns,
+    targetAc
+  );
   learning.stats.validationScoreAvg = runningAverage(
     learning.stats.validationScoreAvg,
-    learning.runs,
+    learning.acceptedRuns,
     validationScore
   );
   learning.stats.qualityScoreAvg = runningAverage(
     learning.stats.qualityScoreAvg,
-    learning.runs,
+    learning.acceptedRuns,
     qualityScore
+  );
+  learning.stats.functionalityCoverageAvg = runningAverage(
+    learning.stats.functionalityCoverageAvg,
+    learning.acceptedRuns,
+    functionalityCoverage
   );
 
   const roleSource = expectedStories.length > 0 ? expectedStories : generatedStories;
@@ -149,8 +199,14 @@ export function updateLearningFromRun(params: {
   return {
     updated: true,
     reason: "ok",
+    forceAccept,
     thresholds: { minQualityScore, minValidationScore },
-    values: { qualityScore, validationScore }
+    values: { qualityScore, validationScore, functionalityCoverage },
+    counters: {
+      runs: learning.runs,
+      acceptedRuns: learning.acceptedRuns,
+      rejectedRuns: learning.rejectedRuns
+    }
   };
 }
 
@@ -194,7 +250,8 @@ function loadLearning(): LearningFile {
   ensureLearningFile();
   try {
     const raw = fs.readFileSync(LEARNING_FILE, "utf-8");
-    return JSON.parse(raw) as LearningFile;
+    const parsed = JSON.parse(raw) as Partial<LearningFile>;
+    return normalizeLearning(parsed);
   } catch {
     return initialLearning();
   }
@@ -215,18 +272,49 @@ function ensureLearningFile() {
 
 function initialLearning(): LearningFile {
   return {
-    version: 1,
+    version: 2,
     runs: 0,
+    acceptedRuns: 0,
+    rejectedRuns: 0,
     lastUpdated: new Date(0).toISOString(),
     stats: {
       targetStoriesAvg: 0,
       targetAcAvg: 0,
       validationScoreAvg: 0,
-      qualityScoreAvg: 0
+      qualityScoreAvg: 0,
+      functionalityCoverageAvg: 0
     },
     roleCounts: {},
-    notesSectionCounts: {}
+    notesSectionCounts: {},
+    findingTypeCounts: {}
   };
+}
+
+function normalizeLearning(raw: Partial<LearningFile>): LearningFile {
+  const base = initialLearning();
+  const stats: Partial<LearningFile["stats"]> = raw.stats || {};
+  return {
+    version: Number(raw.version || base.version),
+    runs: Number(raw.runs || 0),
+    acceptedRuns: Number(raw.acceptedRuns || 0),
+    rejectedRuns: Number(raw.rejectedRuns || 0),
+    lastUpdated: String(raw.lastUpdated || base.lastUpdated),
+    stats: {
+      targetStoriesAvg: Number(stats.targetStoriesAvg || 0),
+      targetAcAvg: Number(stats.targetAcAvg || 0),
+      validationScoreAvg: Number(stats.validationScoreAvg || 0),
+      qualityScoreAvg: Number(stats.qualityScoreAvg || 0),
+      functionalityCoverageAvg: Number(stats.functionalityCoverageAvg || 0)
+    },
+    roleCounts: isRecord(raw.roleCounts) ? raw.roleCounts : {},
+    notesSectionCounts: isRecord(raw.notesSectionCounts) ? raw.notesSectionCounts : {},
+    findingTypeCounts: isRecord(raw.findingTypeCounts) ? raw.findingTypeCounts : {}
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, number> {
+  if (!value || typeof value !== "object") return false;
+  return Object.values(value).every(v => typeof v === "number");
 }
 
 function normalize(s: string) {

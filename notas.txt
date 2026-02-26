@@ -16,3 +16,31 @@ npm run analyze -- documents/Vending.7.1.pdf
 
 #ejecutar sin golden stories
 npm run analyze -- <archivo> --no-golden
+
+• Mejora continua en 3 frentes:
+                                                                                                                                                                                                         
+  - Learning guardrails                                                                                                                                                                                  
+    Solo actualiza data/quality_patterns.json si el run supera umbrales mínimos de calidad/validación.                                                                                                   
+  - Coverage por functionality                                                                                                                                                                           
+    Calcula cobertura real de requirements.functionalities contra historias generadas y la añade al eval.json.                                                                                           
+  - Hard constraints pre-save                                                                                                                                                                            
+    Evalúa mínimos de historias, validation score, quality score y coverage funcional.                                                                                                                   
+    Modo configurable: warn (default) o fail.                                                                                                                                                            
+
+Config por .env:
+
+  - HARD_CONSTRAINTS_MODE=warn o fail
+  - MIN_QUALITY_SCORE=0.55
+  - MIN_VALIDATION_SCORE=75
+  - MIN_FUNCTIONALITY_COVERAGE=0.7
+
+*.eval.json:
+
+  - functionalityCoverage
+  - hardConstraints (passed/violations/thresholds/values)
+
+Feedback humano                                                                                                                                                                                     
+    Carga feedback de
+      - .xlsx (mismo formato de historias) para patrones,                                                                                                                                                    
+        - .txt/.md para reglas explícitas.                                                                                                                                                                     
+        Ese feedback se inyecta en prompts de extracción/refinamiento/gap y también puede alimentar el aprendizaje cuando no hay expected_stories. 

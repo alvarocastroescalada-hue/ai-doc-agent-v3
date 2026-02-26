@@ -351,6 +351,8 @@ export async function runAgent(
     qualityScore: typeof (evaluation as any)?.qualityScore === "number"
       ? (evaluation as any).qualityScore
       : 0,
+    functionalityCoverage: functionalityCoverage.coverage,
+    validationFindings: finalValidation.findings,
     options: {
       minQualityScore: MIN_QUALITY_SCORE,
       minValidationScore: MIN_VALIDATION_SCORE

@@ -5,6 +5,8 @@ import path from "node:path";
 import fs from "node:fs";
 import { v4 as uuidv4 } from "uuid";
 import { runAgent } from "../engine/runAgent";
+import { applyFeedbackAndRetrain, loadFeedbackHistory } from "../feedback/runFeedbackLoop";
+import { loadRuns, upsertRun } from "../runs/runRegistry";
 
 const app = express();
 app.use(cors());
@@ -28,16 +30,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Run registry simple en disco
-const runsFile = path.resolve("data", "runs.json");
-function loadRuns(): any[] {
-  const dir = path.dirname(runsFile);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  if (!fs.existsSync(runsFile)) fs.writeFileSync(runsFile, JSON.stringify([], null, 2));
-  return JSON.parse(fs.readFileSync(runsFile, "utf-8"));
-}
-function saveRuns(runs: any[]) {
-  fs.writeFileSync(runsFile, JSON.stringify(runs, null, 2));
+function toUrlPath(p: string) {
+  return path.relative(process.cwd(), p).split(path.sep).join("/");
 }
 
 // Health
@@ -51,9 +45,7 @@ app.post("/analyze", upload.single("file"), async (req, res) => {
   const runId = `run_${uuidv4()}`;
   const start = new Date().toISOString();
 
-  // Guardar run inicial
-  const runs = loadRuns();
-  runs.push({
+  upsertRun(runId, () => ({
     runId,
     status: "running",
     startedAt: start,
@@ -61,15 +53,12 @@ app.post("/analyze", upload.single("file"), async (req, res) => {
     originalName: file.originalname,
     storedPath: file.path,
     outputs: {}
-  });
-  saveRuns(runs);
+  }));
 
   try {
-    // Ejecuta pipeline (sincronamente en este MVP)
     console.log("Running agent...");
     const result = await runAgent(file.path, { useGolden: true });
 
-    const toUrlPath = (p: string) => path.relative(process.cwd(), p).split(path.sep).join("/");
     const outputs = {
       backlogJson: toUrlPath(result.outputs.backlogJson),
       validationJson: toUrlPath(result.outputs.validationJson),
@@ -80,23 +69,39 @@ app.post("/analyze", upload.single("file"), async (req, res) => {
     };
 
     const doneAt = new Date().toISOString();
-    const updated = loadRuns().map(r =>
-      r.runId === runId
-        ? { ...r, status: "completed", finishedAt: doneAt, outputs }
-        : r
-    );
-    saveRuns(updated);
+    upsertRun(runId, current => ({
+      ...(current || {
+        runId,
+        status: "running",
+        startedAt: start,
+        finishedAt: null,
+        originalName: file.originalname,
+        storedPath: file.path,
+        outputs: {}
+      }),
+      status: "completed",
+      finishedAt: doneAt,
+      outputs
+    }));
 
     return res.json({ runId, status: "completed", outputs });
   } catch (e: any) {
     console.error("Agent failed:", e);
     const doneAt = new Date().toISOString();
-    const updated = loadRuns().map(r =>
-      r.runId === runId
-        ? { ...r, status: "failed", finishedAt: doneAt, error: e?.message ?? String(e) }
-        : r
-    );
-    saveRuns(updated);
+    upsertRun(runId, current => ({
+      ...(current || {
+        runId,
+        status: "running",
+        startedAt: start,
+        finishedAt: null,
+        originalName: file.originalname,
+        storedPath: file.path,
+        outputs: {}
+      }),
+      status: "failed",
+      finishedAt: doneAt,
+      error: e?.message ?? String(e)
+    }));
 
     return res.status(500).json({ runId, status: "failed", error: e?.message ?? String(e) });
   }
@@ -109,6 +114,54 @@ app.get("/runs/:runId", (req, res) => {
   const run = runs.find(r => r.runId === runId);
   if (!run) return res.status(404).json({ error: "Not found" });
   res.json(run);
+});
+
+// POST /runs/:runId/feedback
+app.post("/runs/:runId/feedback", (req, res) => {
+  const { runId } = req.params;
+  const body = req.body || {};
+  const correctedStories = body.correctedStories;
+
+  if (!Array.isArray(correctedStories) || correctedStories.length === 0) {
+    return res.status(400).json({
+      error: "correctedStories must be a non-empty array."
+    });
+  }
+
+  try {
+    const result = applyFeedbackAndRetrain({
+      runId,
+      correctedStories,
+      notes: typeof body.notes === "string" ? body.notes : undefined,
+      author: typeof body.author === "string" ? body.author : undefined,
+      accepted: typeof body.accepted === "boolean" ? body.accepted : true
+    });
+
+    return res.json({
+      status: "ok",
+      ...result
+    });
+  } catch (e: any) {
+    return res.status(400).json({
+      status: "error",
+      error: e?.message ?? String(e)
+    });
+  }
+});
+
+// GET /runs/:runId/feedback
+app.get("/runs/:runId/feedback", (req, res) => {
+  const { runId } = req.params;
+  const runs = loadRuns();
+  const run = runs.find(r => r.runId === runId);
+  if (!run) return res.status(404).json({ error: "Not found" });
+
+  const history = loadFeedbackHistory().filter((f: any) => f?.runId === runId);
+  return res.json({
+    runId,
+    feedback: run.feedback || null,
+    history
+  });
 });
 
 // Servir outputs estaticos (para descargar)
