@@ -1,6 +1,7 @@
 node_modules/
 outputs/
 documents/
+data/lancedb/
 .env
 .env.*
 !.env.example
