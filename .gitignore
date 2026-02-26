@@ -3,3 +3,4 @@ outputs/
 documents/
 .env
 .env.*
+!.env.example
