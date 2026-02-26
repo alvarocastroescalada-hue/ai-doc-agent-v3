@@ -2,6 +2,10 @@ node_modules/
 outputs/
 documents/
 data/lancedb/
+data/runs.json
+data/quality_patterns.json
+data/run_feedback.json
+uploads/
 .env
 .env.*
 !.env.example
