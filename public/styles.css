@@ -235,6 +235,46 @@ tbody tr:hover {
   font-weight: 700;
 }
 
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.guide-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  background: #f8fbff;
+}
+
+.guide-card h3 {
+  margin-top: 0;
+}
+
+.guide-card ul,
+.tips-body ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.tips {
+  margin-top: 10px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: #fcfdff;
+}
+
+.tips summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tips-body {
+  margin-top: 8px;
+}
+
 .editor-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -330,6 +370,10 @@ tbody tr:hover {
   }
 
   .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-grid {
     grid-template-columns: 1fr;
   }
 

@@ -15,6 +15,70 @@
         <p>Flujo guiado: analizar, seleccionar run, corregir y reentrenar.</p>
       </section>
 
+      <section class="panel">
+        <div class="title-row">
+          <h2>Guia de Uso</h2>
+          <small class="hint">Ruta recomendada en 3 pasos</small>
+        </div>
+        <div class="guide-grid">
+          <article class="guide-card">
+            <h3>1. Analizar documento</h3>
+            <p>Sube un PDF/DOCX/TXT/MD con requisitos claros.</p>
+            <ul>
+              <li>Empieza con <code>Usar golden stories</code> activado.</li>
+              <li>Evita archivos escaneados sin OCR.</li>
+              <li>Revisa el <code>runId</code> generado.</li>
+            </ul>
+          </article>
+          <article class="guide-card">
+            <h3>2. Seleccionar run</h3>
+            <p>Haz clic en la tabla de runs para cargar backlog y detalle.</p>
+            <ul>
+              <li>Prioriza runs <code>completed</code>.</li>
+              <li>Carga historias con <code>Cargar historias del run</code>.</li>
+              <li>Usa el filtro de US para enfocarte.</li>
+            </ul>
+          </article>
+          <article class="guide-card">
+            <h3>3. Feedback y retraining</h3>
+            <p>Corrige historias y envia feedback para mejorar patrones.</p>
+            <ul>
+              <li>Ajusta <code>role</code>, <code>want</code>, <code>soThat</code>.</li>
+              <li>Asegura AC con formato DADO/CUANDO/ENTONCES.</li>
+              <li>Guarda borrador si no terminas en una sesion.</li>
+            </ul>
+          </article>
+        </div>
+
+        <details class="tips">
+          <summary>Como mejorar resultados de forma consistente</summary>
+          <div class="tips-body">
+            <h3>Checklist de calidad de entrada</h3>
+            <ul>
+              <li>Incluye actores explicitos (quien usa el sistema).</li>
+              <li>Separa funcionalidades atomicas en frases cortas.</li>
+              <li>Añade reglas de error, limites y validaciones.</li>
+              <li>Especifica integraciones externas y campos clave.</li>
+            </ul>
+
+            <h3>Checklist de correccion humana</h3>
+            <ul>
+              <li>1 historia = 1 objetivo verificable.</li>
+              <li>Evita verbos vagos: gestionar, manejar, permitir.</li>
+              <li>Incluye al menos 1 criterio negativo por historia.</li>
+              <li>Asegura notas tecnicas utiles en <code>notesHu</code>.</li>
+            </ul>
+
+            <h3>Si el score sale bajo</h3>
+            <ul>
+              <li>Corrige y envia feedback con <code>Aceptado = Si</code>.</li>
+              <li>Repite 2-3 iteraciones en el mismo dominio.</li>
+              <li>Consulta metricas para validar mejora por run.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
       <section class="panel accordion">
         <button class="accordion-toggle" data-target="step1-content" type="button">
           <span>Paso 1: Nuevo Analisis</span>
