@@ -7,11 +7,20 @@ export function loadGoldenStoriesFromExcel(folderPath: string) {
   const files = fs.readdirSync(folderPath)
     .filter(f => f.endsWith(".xlsx"));
 
+  return loadGoldenStoriesFromExcelFiles(
+    files.map(file => path.join(folderPath, file))
+  );
+}
+
+export function loadGoldenStoriesFromExcelFile(filePath: string) {
+  return loadGoldenStoriesFromExcelFiles([filePath]);
+}
+
+function loadGoldenStoriesFromExcelFiles(filePaths: string[]) {
   const stories: any[] = [];
 
-  for (const file of files) {
-
-    const workbook = XLSX.readFile(path.join(folderPath, file));
+  for (const filePath of filePaths) {
+    const workbook = XLSX.readFile(filePath);
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
 

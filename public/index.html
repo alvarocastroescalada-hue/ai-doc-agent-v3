@@ -156,15 +156,20 @@
                 <option value="false">No</option>
               </select>
             </label>
-            <label>
-              Notas
-              <input id="feedback-notes" placeholder="Correcciones del PO" />
-            </label>
-            <button id="load-stories" type="button">Cargar historias del run</button>
-            <button id="seed-example" type="button">Rellenar ejemplo rapido</button>
-            <button id="save-draft" type="button">Guardar borrador</button>
-            <button id="load-draft" type="button">Cargar borrador</button>
-            <button id="clear-draft" type="button">Limpiar borrador</button>
+          <label>
+            Notas
+            <input id="feedback-notes" placeholder="Correcciones del PO" />
+          </label>
+          <label>
+            Excel historias esperadas
+            <input type="file" id="feedback-excel" accept=".xlsx" />
+          </label>
+          <button id="load-stories" type="button">Cargar historias del run</button>
+          <button id="seed-example" type="button">Rellenar ejemplo rapido</button>
+          <button id="send-feedback-excel" type="button">Enviar feedback desde Excel</button>
+          <button id="save-draft" type="button">Guardar borrador</button>
+          <button id="load-draft" type="button">Cargar borrador</button>
+          <button id="clear-draft" type="button">Limpiar borrador</button>
             <button id="send-feedback" type="submit" disabled>Enviar feedback y reentrenar</button>
           </form>
 

@@ -23,8 +23,10 @@ const el = {
   feedbackAuthor: document.getElementById("feedback-author"),
   feedbackAccepted: document.getElementById("feedback-accepted"),
   feedbackNotes: document.getElementById("feedback-notes"),
+  feedbackExcel: document.getElementById("feedback-excel"),
   loadStories: document.getElementById("load-stories"),
   seedExample: document.getElementById("seed-example"),
+  sendFeedbackExcel: document.getElementById("send-feedback-excel"),
   sendFeedback: document.getElementById("send-feedback"),
   saveDraft: document.getElementById("save-draft"),
   loadDraft: document.getElementById("load-draft"),
@@ -59,6 +61,7 @@ function bindEvents() {
   el.saveDraft.addEventListener("click", saveDraft);
   el.loadDraft.addEventListener("click", loadDraft);
   el.clearDraft.addEventListener("click", clearDraft);
+  el.sendFeedbackExcel.addEventListener("click", sendFeedbackFromExcel);
 
   for (const btn of el.accordionToggles) {
     btn.addEventListener("click", () => {
@@ -159,6 +162,37 @@ function bindEvents() {
       toast("Error enviando feedback.");
     }
   });
+}
+
+async function sendFeedbackFromExcel() {
+  const runId = el.feedbackRunId.value.trim();
+  if (!runId) return toast("Falta runId.");
+
+  const file = el.feedbackExcel.files?.[0];
+  if (!file) return toast("Selecciona un archivo .xlsx de historias esperadas.");
+
+  const data = new FormData();
+  data.append("file", file);
+  data.append("accepted", el.feedbackAccepted.value);
+  data.append("author", el.feedbackAuthor.value.trim());
+  data.append("notes", el.feedbackNotes.value.trim());
+
+  try {
+    setText(el.feedbackResult, "Enviando feedback desde Excel...");
+    const res = await fetchWithKey(`/runs/${encodeURIComponent(runId)}/feedback/excel`, {
+      method: "POST",
+      body: data
+    });
+    const json = await res.json();
+    setText(el.feedbackResult, JSON.stringify(json, null, 2));
+    await loadRuns();
+    await loadRunDetail(runId);
+    await loadMetrics();
+    toast("Feedback desde Excel aplicado.");
+  } catch (err) {
+    setText(el.feedbackResult, String(err));
+    toast("Error al aplicar feedback desde Excel.");
+  }
 }
 
 async function loadRuns() {

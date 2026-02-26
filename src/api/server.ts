@@ -6,6 +6,7 @@ import fs from "node:fs";
 import { v4 as uuidv4 } from "uuid";
 import { runAgent } from "../engine/runAgent";
 import { applyFeedbackAndRetrain, loadFeedbackHistory } from "../feedback/runFeedbackLoop";
+import { loadGoldenStoriesFromExcelFile } from "../golden/loadGoldenFromExcel";
 import { getLearningSnapshot } from "../learning/qualityLearning";
 import { loadRuns, upsertRun } from "../runs/runRegistry";
 
@@ -185,6 +186,45 @@ app.post("/runs/:runId/feedback", (req, res) => {
       status: "ok",
       ...result
     });
+  } catch (e: any) {
+    return res.status(400).json({
+      status: "error",
+      error: e?.message ?? String(e)
+    });
+  }
+});
+
+// POST /runs/:runId/feedback/excel
+app.post("/runs/:runId/feedback/excel", upload.single("file"), (req, res) => {
+  const runId = String(req.params.runId || "");
+  const file = req.file;
+  if (!file) return res.status(400).json({ error: "Missing file" });
+  if (!String(file.originalname || "").toLowerCase().endsWith(".xlsx")) {
+    return res.status(400).json({ error: "File must be .xlsx" });
+  }
+
+  try {
+    const correctedStories = loadGoldenStoriesFromExcelFile(file.path);
+    if (!Array.isArray(correctedStories) || correctedStories.length === 0) {
+      return res.status(400).json({ error: "No stories found in Excel file." });
+    }
+
+    const bodyValue = (v: unknown) => Array.isArray(v) ? String(v[0] || "") : String(v || "");
+    const accepted = bodyValue(req.body?.accepted || "true").toLowerCase() !== "false";
+    const authorRaw = bodyValue(req.body?.author);
+    const notesRaw = bodyValue(req.body?.notes);
+    const author = authorRaw.trim() ? authorRaw : undefined;
+    const notes = notesRaw.trim() ? notesRaw : undefined;
+
+    const result = applyFeedbackAndRetrain({
+      runId,
+      correctedStories,
+      author,
+      notes,
+      accepted
+    });
+
+    return res.json({ status: "ok", source: "excel", ...result });
   } catch (e: any) {
     return res.status(400).json({
       status: "error",
