@@ -6,6 +6,7 @@ import fs from "node:fs";
 import { v4 as uuidv4 } from "uuid";
 import { runAgent } from "../engine/runAgent";
 import { applyFeedbackAndRetrain, loadFeedbackHistory } from "../feedback/runFeedbackLoop";
+import { getLearningSnapshot } from "../learning/qualityLearning";
 import { loadRuns, upsertRun } from "../runs/runRegistry";
 
 const app = express();
@@ -21,7 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
-const uploadDir = path.resolve("uploads");
+const projectRoot = path.resolve(__dirname, "..", "..");
+const uploadDir = path.join(projectRoot, "uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 const storage = multer.diskStorage({
@@ -29,6 +31,7 @@ const storage = multer.diskStorage({
   filename: (_req, file, cb) => cb(null, `${Date.now()}_${file.originalname}`)
 });
 const upload = multer({ storage });
+const publicDir = path.join(projectRoot, "public");
 
 function toUrlPath(p: string) {
   return path.relative(process.cwd(), p).split(path.sep).join("/");
@@ -37,10 +40,23 @@ function toUrlPath(p: string) {
 // Health
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
+// GET /runs
+app.get("/runs", (_req, res) => {
+  const runs = loadRuns()
+    .slice()
+    .sort((a, b) => {
+      const ta = new Date(a.startedAt || 0).getTime();
+      const tb = new Date(b.startedAt || 0).getTime();
+      return tb - ta;
+    });
+  res.json({ runs });
+});
+
 // POST /analyze (multipart)
 app.post("/analyze", upload.single("file"), async (req, res) => {
   const file = req.file;
   if (!file) return res.status(400).json({ error: "Missing file" });
+  const useGolden = String(req.body?.noGolden || "").toLowerCase() !== "true";
 
   const runId = `run_${uuidv4()}`;
   const start = new Date().toISOString();
@@ -57,7 +73,7 @@ app.post("/analyze", upload.single("file"), async (req, res) => {
 
   try {
     console.log("Running agent...");
-    const result = await runAgent(file.path, { useGolden: true });
+    const result = await runAgent(file.path, { useGolden });
 
     const outputs = {
       backlogJson: toUrlPath(result.outputs.backlogJson),
@@ -116,6 +132,34 @@ app.get("/runs/:runId", (req, res) => {
   res.json(run);
 });
 
+// GET /runs/:runId/artifacts
+app.get("/runs/:runId/artifacts", (req, res) => {
+  const { runId } = req.params;
+  const run = loadRuns().find(r => r.runId === runId);
+  if (!run) return res.status(404).json({ error: "Not found" });
+  if (run.status !== "completed") {
+    return res.status(400).json({ error: "Run is not completed." });
+  }
+
+  try {
+    const readOutput = (p?: string) => {
+      if (!p) return null;
+      const full = path.resolve(p);
+      if (!fs.existsSync(full)) return null;
+      return JSON.parse(fs.readFileSync(full, "utf-8"));
+    };
+
+    return res.json({
+      runId,
+      backlog: readOutput(run.outputs.backlogJson),
+      validation: readOutput(run.outputs.validationJson),
+      evaluation: readOutput(run.outputs.evalJson)
+    });
+  } catch (e: any) {
+    return res.status(500).json({ error: e?.message ?? String(e) });
+  }
+});
+
 // POST /runs/:runId/feedback
 app.post("/runs/:runId/feedback", (req, res) => {
   const { runId } = req.params;
@@ -164,8 +208,27 @@ app.get("/runs/:runId/feedback", (req, res) => {
   });
 });
 
+// GET /learning/metrics
+app.get("/learning/metrics", (_req, res) => {
+  const learning = getLearningSnapshot();
+  const feedbackHistory = loadFeedbackHistory();
+  const lastFeedback = feedbackHistory.slice(-5).reverse();
+  res.json({
+    learning,
+    feedback: {
+      total: feedbackHistory.length,
+      last: lastFeedback
+    }
+  });
+});
+
 // Servir outputs estaticos (para descargar)
-app.use("/outputs", express.static(path.resolve("outputs")));
+app.use("/outputs", express.static(path.join(projectRoot, "outputs")));
+app.use(express.static(publicDir));
+
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(publicDir, "index.html"));
+});
 
 export function startServer(port: number) {
   app.listen(port, () => {

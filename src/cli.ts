@@ -8,13 +8,14 @@ import { applyFeedbackAndRetrain } from "./feedback/runFeedbackLoop";
 async function main() {
   const args = process.argv.slice(2);
   const command = resolveCommand(args);
+  const commandArgs = isExplicitCommand(args) ? args.slice(1) : args;
 
   if (command === "feedback") {
-    await runFeedback(args.slice(1));
+    await runFeedback(commandArgs);
     return;
   }
 
-  await runAnalyze(command === "analyze" ? args.slice(1) : args);
+  await runAnalyze(commandArgs);
 }
 
 async function runAnalyze(args: string[]) {
@@ -148,6 +149,11 @@ function resolveCommand(args: string[]) {
   const first = args[0];
   if (first === "analyze" || first === "feedback") return first;
   return "analyze";
+}
+
+function isExplicitCommand(args: string[]) {
+  const first = args[0];
+  return first === "analyze" || first === "feedback";
 }
 
 function getFlagValue(args: string[], flag: string) {

@@ -33,6 +33,10 @@ type LearningFile = {
 
 const LEARNING_FILE = path.resolve("data", "quality_patterns.json");
 
+export function getLearningSnapshot() {
+  return loadLearning();
+}
+
 export function getLearningGuidanceText() {
   const data = loadLearning();
   if (data.runs === 0) return "";

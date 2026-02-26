@@ -39,6 +39,7 @@ type FeedbackHistoryRecord = {
   notes?: string;
   accepted?: boolean;
   correctedStoriesCount: number;
+  correctedStories: NormalizedExpectedStory[];
   learningUpdate: unknown;
 };
 
@@ -98,6 +99,7 @@ export function applyFeedbackAndRetrain(input: FeedbackInput) {
     notes: input.notes,
     accepted: acceptedByHuman,
     correctedStoriesCount: correctedStories.length,
+    correctedStories,
     learningUpdate
   };
 

@@ -89,6 +89,51 @@ function normalizeBacklog(backlogRaw: any) {
         "DADO un contexto valido CUANDO se ejecuta la accion ENTONCES el sistema responde segun la regla definida."
       );
     }
+
+    // NOTES HU (schema requiere al menos una seccion con al menos un bullet)
+    if (!Array.isArray(story.notesHu)) {
+      story.notesHu = [];
+    }
+
+    story.notesHu = story.notesHu
+      .map((section: any) => {
+        if (typeof section === "string") {
+          const text = section.trim();
+          if (!text) return null;
+          return { section: "Notas", bullets: [text] };
+        }
+
+        if (section && typeof section === "object") {
+          const sec = String(section.section || "Notas").trim() || "Notas";
+          const bulletsRaw = Array.isArray(section.bullets)
+            ? section.bullets
+            : [];
+          const bullets = bulletsRaw
+            .map((b: any) => String(b || "").trim())
+            .filter(Boolean);
+
+          if (bullets.length === 0 && typeof section.text === "string") {
+            const text = section.text.trim();
+            if (text) bullets.push(text);
+          }
+
+          if (bullets.length === 0) {
+            bullets.push("Detallar consideraciones tecnicas y casos borde.");
+          }
+
+          return { section: sec, bullets };
+        }
+
+        return null;
+      })
+      .filter(Boolean);
+
+    if (story.notesHu.length === 0) {
+      story.notesHu.push({
+        section: "Consideraciones Tecnicas",
+        bullets: ["Detallar reglas tecnicas, errores y casos borde."]
+      });
+    }
   }
 
   return backlogRaw;

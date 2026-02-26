@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Doc Agent - Guided UI</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <main class="layout">
+      <section class="panel hero">
+        <h1>AI Doc Agent</h1>
+        <p>Flujo guiado: analizar, seleccionar run, corregir y reentrenar.</p>
+      </section>
+
+      <section class="panel accordion">
+        <button class="accordion-toggle" data-target="step1-content" type="button">
+          <span>Paso 1: Nuevo Analisis</span>
+          <small>Sube PDF/DOCX/TXT/MD y ejecuta</small>
+        </button>
+        <div id="step1-content" class="accordion-content open">
+          <form id="analyze-form" class="grid-form">
+            <label>
+              API Key (opcional)
+              <input type="password" id="api-key" placeholder="x-api-key" />
+            </label>
+            <label>
+              Documento
+              <input type="file" id="doc-file" required />
+            </label>
+            <label class="check">
+              <input type="checkbox" id="use-golden" checked />
+              Usar golden stories
+            </label>
+            <button type="submit">Ejecutar analisis</button>
+          </form>
+          <p class="hint">Ejemplo sugerido: <code>Vending. 7.1.pdf</code>.</p>
+          <pre id="analyze-result" class="output"></pre>
+        </div>
+      </section>
+
+      <section class="panel accordion">
+        <button class="accordion-toggle" data-target="step2-content" type="button">
+          <span>Paso 2: Runs</span>
+          <small>Selecciona un run para cargar detalle y editor</small>
+        </button>
+        <div id="step2-content" class="accordion-content open">
+          <div class="title-row">
+            <h2>Runs</h2>
+            <button id="refresh-runs" type="button">Refrescar</button>
+          </div>
+          <div class="table-wrap">
+            <table id="runs-table">
+              <thead>
+                <tr>
+                  <th>Run ID</th>
+                  <th>Estado</th>
+                  <th>Inicio</th>
+                  <th>Documento</th>
+                  <th>Feedback</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <h3>Detalle del Run</h3>
+          <pre id="run-detail" class="output"></pre>
+        </div>
+      </section>
+
+      <section class="panel accordion">
+        <button class="accordion-toggle" data-target="step3-content" type="button">
+          <span>Paso 3: Feedback + Retraining</span>
+          <small>Corrige historias y envia feedback</small>
+        </button>
+        <div id="step3-content" class="accordion-content open">
+          <form id="feedback-form" class="grid-form">
+            <label>
+              Run ID
+              <input id="feedback-run-id" required />
+            </label>
+            <label>
+              Autor
+              <input id="feedback-author" placeholder="ace" />
+            </label>
+            <label>
+              Aceptado
+              <select id="feedback-accepted">
+                <option value="true">Si</option>
+                <option value="false">No</option>
+              </select>
+            </label>
+            <label>
+              Notas
+              <input id="feedback-notes" placeholder="Correcciones del PO" />
+            </label>
+            <button id="load-stories" type="button">Cargar historias del run</button>
+            <button id="seed-example" type="button">Rellenar ejemplo rapido</button>
+            <button id="save-draft" type="button">Guardar borrador</button>
+            <button id="load-draft" type="button">Cargar borrador</button>
+            <button id="clear-draft" type="button">Limpiar borrador</button>
+            <button id="send-feedback" type="submit" disabled>Enviar feedback y reentrenar</button>
+          </form>
+
+          <div class="title-row">
+            <h3>Historias de Usuario</h3>
+            <label>
+              Filtro
+              <select id="story-filter">
+                <option value="all">Todas</option>
+                <option value="changed">Con cambios</option>
+                <option value="unchanged">Sin cambios</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="editor-wrap">
+            <div>
+              <div class="table-wrap">
+                <table id="stories-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Titulo</th>
+                      <th>Role</th>
+                      <th>Cambios</th>
+                    </tr>
+                  </thead>
+                  <tbody id="stories-table-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3>Detalle US Seleccionada</h3>
+              <div id="story-detail" class="story-card"></div>
+              <h3>Diff generated vs corrected</h3>
+              <div id="story-diff-single"></div>
+            </div>
+          </div>
+
+          <pre id="feedback-result" class="output"></pre>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="title-row">
+          <h2>Metricas de Aprendizaje</h2>
+          <button id="refresh-metrics" type="button">Refrescar</button>
+        </div>
+        <div id="metrics-grid" class="metrics-grid"></div>
+        <pre id="metrics-raw" class="output"></pre>
+      </section>
+    </main>
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
