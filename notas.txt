@@ -1,0 +1,18 @@
+Qué hace
+                                                                                                                                              
+  - Procesa un documento (PDF/DOCX/etc.), extrae texto, lo divide en chunks y crea embeddings.                                                
+  - Indexa los chunks en un vector store y recupera contexto relevante (incluye “golden stories” y memoria previa).                           
+  - Llama a un LLM para: análisis de requisitos → extracción de historias → validación.                                                       
+  - Normaliza historias (traceability + criterios de aceptación), aplica un quality gate determinista.                                        
+  - Genera salidas: *.requirements.json, *.backlog.json, *.validation.json, *.retrieval.json y *.backlog.xlsx.                                
+  - Ofrece CLI (npm run analyze -- <archivo>) y API (POST /analyze) con registro de runs.  
+
+
+arrancar API REST: npm run api
+invocar: curl -F "file=@documents/Vending.7.1.pdf" http://localhost:3000/analyze
+
+
+npm run analyze -- documents/Vending.7.1.pdf
+
+#ejecutar sin golden stories
+npm run analyze -- <archivo> --no-golden

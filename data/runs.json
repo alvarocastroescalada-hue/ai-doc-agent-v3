@@ -1,0 +1,306 @@
+[
+  {
+    "runId": "run_e21f65c2-3bd6-40c1-8959-090ac2c53e1f",
+    "status": "failed",
+    "startedAt": "2026-02-24T11:43:11.698Z",
+    "finishedAt": "2026-02-24T11:43:15.295Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771933391688_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "table.toArray is not a function"
+  },
+  {
+    "runId": "run_a02c8f50-fa1a-47d3-9ba0-ab93d20542ec",
+    "status": "failed",
+    "startedAt": "2026-02-24T11:46:31.057Z",
+    "finishedAt": "2026-02-24T11:46:31.808Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771933591049_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "table.toArray is not a function"
+  },
+  {
+    "runId": "run_874f3f1b-be7d-4222-b8c3-6d7a90aae198",
+    "status": "failed",
+    "startedAt": "2026-02-24T12:03:46.839Z",
+    "finishedAt": "2026-02-24T12:03:49.754Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771934626824_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "table.toArray is not a function"
+  },
+  {
+    "runId": "run_a71a528a-7fac-43df-b3d0-1ba28910bc8f",
+    "status": "failed",
+    "startedAt": "2026-02-24T12:09:00.324Z",
+    "finishedAt": "2026-02-24T12:09:01.847Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771934940315_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "Found field not in schema: documentId at row 0"
+  },
+  {
+    "runId": "run_af4e704f-47f9-4d3d-97b3-18aa04bd6c8e",
+    "status": "completed",
+    "startedAt": "2026-02-24T12:10:13.883Z",
+    "finishedAt": "2026-02-24T12:11:21.149Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771935013875_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/Vending_7_1.backlog.json",
+      "validationJson": "outputs/Vending_7_1.validation.json",
+      "requirementsJson": "outputs/Vending_7_1.requirements.json",
+      "retrievalJson": "outputs/Vending_7_1.retrieval.json",
+      "excel": "outputs/Vending_7_1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_a0b9b660-3111-4437-a0af-badd89b14249",
+    "status": "failed",
+    "startedAt": "2026-02-24T12:25:40.278Z",
+    "finishedAt": "2026-02-24T12:27:28.810Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771935940271_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      2,\n      \"notesHu\",\n      0,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      3,\n      \"notesHu\",\n      0,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      3,\n      \"notesHu\",\n      2,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      4,\n      \"notesHu\",\n      2,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      5,\n      \"notesHu\",\n      0,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      6,\n      \"notesHu\",\n      0,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      7,\n      \"notesHu\",\n      0,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      8,\n      \"notesHu\",\n      0,\n      \"bullets\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  }\n]"
+  },
+  {
+    "runId": "run_260ac72a-ee28-4b1e-8932-a3f6e77bfcd6",
+    "status": "failed",
+    "startedAt": "2026-02-24T12:51:49.388Z",
+    "finishedAt": "2026-02-24T12:54:18.953Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771937509380_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"expected\": \"array\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\"\n    ],\n    \"message\": \"Invalid input: expected array, received undefined\"\n  }\n]"
+  },
+  {
+    "runId": "run_727854aa-1a04-46c8-9281-64ee11610edf",
+    "status": "failed",
+    "startedAt": "2026-02-24T12:58:18.914Z",
+    "finishedAt": "2026-02-24T12:59:59.120Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771937898905_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      0,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      0,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      1,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      1,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      2,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      2,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      3,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      3,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      4,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      4,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      5,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      5,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  },\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"duplicate\",\n      \"ambiguity\",\n      \"unsupported\",\n      \"contradiction\",\n      \"non_testable\",\n      \"missing_flow\",\n      \"too_large\",\n      \"bad_format\",\n      \"bad_actor\",\n      \"missing_notes\",\n      \"weak_ac\"\n    ],\n    \"path\": [\n      \"findings\",\n      6,\n      \"type\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"duplicate\\\"|\\\"ambiguity\\\"|\\\"unsupported\\\"|\\\"contradiction\\\"|\\\"non_testable\\\"|\\\"missing_flow\\\"|\\\"too_large\\\"|\\\"bad_format\\\"|\\\"bad_actor\\\"|\\\"missing_notes\\\"|\\\"weak_ac\\\"\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"findings\",\n      6,\n      \"message\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]"
+  },
+  {
+    "runId": "run_0bce9a1f-33fd-4c8f-adfd-819b446305f7",
+    "status": "completed",
+    "startedAt": "2026-02-24T13:04:11.768Z",
+    "finishedAt": "2026-02-24T13:07:52.609Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771938251760_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/Vending_7_1.backlog.json",
+      "validationJson": "outputs/Vending_7_1.validation.json",
+      "requirementsJson": "outputs/Vending_7_1.requirements.json",
+      "retrievalJson": "outputs/Vending_7_1.retrieval.json",
+      "excel": "outputs/Vending_7_1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_11ad3079-41d2-482e-a208-f27eddff4574",
+    "status": "failed",
+    "startedAt": "2026-02-24T15:15:10.606Z",
+    "finishedAt": "2026-02-24T15:16:43.415Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771946110599_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"traceability\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"traceability\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"traceability\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"traceability\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      4,\n      \"traceability\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      5,\n      \"traceability\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]"
+  },
+  {
+    "runId": "run_955b48f0-47fa-44bf-9ee7-3628f73d0a71",
+    "status": "failed",
+    "startedAt": "2026-02-24T15:25:20.125Z",
+    "finishedAt": "2026-02-24T15:26:35.797Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771946720110_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  }\n]"
+  },
+  {
+    "runId": "run_f47237a6-c7ad-45d5-9b85-b39ac70f7f2d",
+    "status": "failed",
+    "startedAt": "2026-02-24T15:32:51.711Z",
+    "finishedAt": "2026-02-24T15:34:19.354Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771947171703_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      0\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      1\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      2\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  },\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"acceptanceCriteria\",\n      3\n    ],\n    \"message\": \"Invalid input: expected string, received object\"\n  }\n]"
+  },
+  {
+    "runId": "run_e21a2894-f117-4d97-b53b-05db1f51a5fe",
+    "status": "completed",
+    "startedAt": "2026-02-24T15:39:10.222Z",
+    "finishedAt": "2026-02-24T15:41:39.166Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771947550213_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/Vending_7_1.backlog.json",
+      "validationJson": "outputs/Vending_7_1.validation.json",
+      "requirementsJson": "outputs/Vending_7_1.requirements.json",
+      "retrievalJson": "outputs/Vending_7_1.retrieval.json",
+      "excel": "outputs/Vending_7_1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_e58d043d-7029-4d03-807e-ad111224af41",
+    "status": "failed",
+    "startedAt": "2026-02-24T15:54:37.022Z",
+    "finishedAt": "2026-02-24T15:56:46.629Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771948477016_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 3,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      1,\n      \"acceptanceCriteria\"\n    ],\n    \"message\": \"Too small: expected array to have >=3 items\"\n  }\n]"
+  },
+  {
+    "runId": "run_24b36a7f-23fe-47e2-bad9-4554f401c639",
+    "status": "completed",
+    "startedAt": "2026-02-24T16:02:21.033Z",
+    "finishedAt": "2026-02-24T16:04:44.637Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771948941027_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/Vending_7_1.backlog.json",
+      "validationJson": "outputs/Vending_7_1.validation.json",
+      "requirementsJson": "outputs/Vending_7_1.requirements.json",
+      "retrievalJson": "outputs/Vending_7_1.retrieval.json",
+      "excel": "outputs/Vending_7_1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_3948d368-b0db-44ce-a4fa-5301dbcaff71",
+    "status": "failed",
+    "startedAt": "2026-02-24T16:46:02.455Z",
+    "finishedAt": "2026-02-24T16:46:54.677Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771951562443_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"expected\": \"array\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\"\n    ],\n    \"message\": \"Invalid input: expected array, received undefined\"\n  }\n]"
+  },
+  {
+    "runId": "run_38d2a385-07e2-4e76-b07f-1442b49afa53",
+    "status": "failed",
+    "startedAt": "2026-02-24T16:51:06.526Z",
+    "finishedAt": "2026-02-24T16:51:52.918Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771951866518_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "Extraction response does not contain userStories array"
+  },
+  {
+    "runId": "run_2f87aebc-ca6b-4005-87a1-77d45192a9f1",
+    "status": "failed",
+    "startedAt": "2026-02-24T16:56:32.189Z",
+    "finishedAt": "2026-02-24T16:57:52.021Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1771952192182_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"notesHu\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      0,\n      \"notesHu\",\n      1\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      0,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"notesHu\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      1,\n      \"notesHu\",\n      1\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      1,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"notesHu\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      2,\n      \"notesHu\",\n      1\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      2,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"notesHu\",\n      0\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"userStories\",\n      3,\n      \"notesHu\",\n      1\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      3,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  }\n]"
+  },
+  {
+    "runId": "run_8a4ca659-2294-4837-8911-4f09bbfd0bf8",
+    "status": "failed",
+    "startedAt": "2026-02-25T11:04:21.908Z",
+    "finishedAt": "2026-02-25T11:05:28.518Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772017461902_Vending.7.1.pdf",
+    "outputs": {},
+    "error": "[\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      0,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      1,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  },\n  {\n    \"origin\": \"array\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"userStories\",\n      2,\n      \"traceability\"\n    ],\n    \"message\": \"Too small: expected array to have >=1 items\"\n  }\n]"
+  },
+  {
+    "runId": "run_05b2a469-d77e-447a-991e-f84770aa9a61",
+    "status": "completed",
+    "startedAt": "2026-02-25T11:06:45.258Z",
+    "finishedAt": "2026-02-25T11:08:04.797Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772017605250_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/1772017605250_Vending.7.1.backlog.json",
+      "validationJson": "outputs/1772017605250_Vending.7.1.validation.json",
+      "requirementsJson": "outputs/1772017605250_Vending.7.1.requirements.json",
+      "retrievalJson": "outputs/1772017605250_Vending.7.1.retrieval.json",
+      "excel": "outputs/1772017605250_Vending.7.1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_af87b4a4-17c0-409f-b550-45864bd81733",
+    "status": "completed",
+    "startedAt": "2026-02-25T16:33:03.617Z",
+    "finishedAt": "2026-02-25T16:34:05.092Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772037183605_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/1772037183605_Vending.7.1.backlog.json",
+      "validationJson": "outputs/1772037183605_Vending.7.1.validation.json",
+      "requirementsJson": "outputs/1772037183605_Vending.7.1.requirements.json",
+      "retrievalJson": "outputs/1772037183605_Vending.7.1.retrieval.json",
+      "excel": "outputs/1772037183605_Vending.7.1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_787ded68-ab88-4b17-820d-9608b4b6b8de",
+    "status": "completed",
+    "startedAt": "2026-02-25T16:49:56.161Z",
+    "finishedAt": "2026-02-25T16:50:45.606Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772038196155_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/1772038196155_Vending.7.1.backlog.json",
+      "validationJson": "outputs/1772038196155_Vending.7.1.validation.json",
+      "requirementsJson": "outputs/1772038196155_Vending.7.1.requirements.json",
+      "retrievalJson": "outputs/1772038196155_Vending.7.1.retrieval.json",
+      "evalJson": "outputs/1772038196155_Vending.7.1.eval.json",
+      "excel": "outputs/1772038196155_Vending.7.1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_22500c6b-31af-40c4-b68e-4bc770ae7166",
+    "status": "completed",
+    "startedAt": "2026-02-25T17:05:40.115Z",
+    "finishedAt": "2026-02-25T17:06:47.010Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772039140108_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/1772039140108_Vending.7.1.backlog.json",
+      "validationJson": "outputs/1772039140108_Vending.7.1.validation.json",
+      "requirementsJson": "outputs/1772039140108_Vending.7.1.requirements.json",
+      "retrievalJson": "outputs/1772039140108_Vending.7.1.retrieval.json",
+      "evalJson": "outputs/1772039140108_Vending.7.1.eval.json",
+      "excel": "outputs/1772039140108_Vending.7.1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_0c3dab21-3d49-4dcc-9572-8e52d12012a6",
+    "status": "completed",
+    "startedAt": "2026-02-25T17:15:36.179Z",
+    "finishedAt": "2026-02-25T17:16:47.463Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772039736174_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/1772039736174_Vending.7.1.backlog.json",
+      "validationJson": "outputs/1772039736174_Vending.7.1.validation.json",
+      "requirementsJson": "outputs/1772039736174_Vending.7.1.requirements.json",
+      "retrievalJson": "outputs/1772039736174_Vending.7.1.retrieval.json",
+      "evalJson": "outputs/1772039736174_Vending.7.1.eval.json",
+      "excel": "outputs/1772039736174_Vending.7.1.backlog.xlsx"
+    }
+  },
+  {
+    "runId": "run_226d01f1-9749-4d9d-9556-6e3cf423215b",
+    "status": "completed",
+    "startedAt": "2026-02-25T17:21:00.377Z",
+    "finishedAt": "2026-02-25T17:22:12.126Z",
+    "originalName": "Vending.7.1.pdf",
+    "storedPath": "C:\\Users\\ÁlvaroCastro\\ai-doc-agent-v3\\uploads\\1772040060375_Vending.7.1.pdf",
+    "outputs": {
+      "backlogJson": "outputs/1772040060375_Vending.7.1.backlog.json",
+      "validationJson": "outputs/1772040060375_Vending.7.1.validation.json",
+      "requirementsJson": "outputs/1772040060375_Vending.7.1.requirements.json",
+      "retrievalJson": "outputs/1772040060375_Vending.7.1.retrieval.json",
+      "evalJson": "outputs/1772040060375_Vending.7.1.eval.json",
+      "excel": "outputs/1772040060375_Vending.7.1.backlog.xlsx"
+    }
+  }
+]
